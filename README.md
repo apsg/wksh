@@ -1,5 +1,5 @@
-Szyfrator WKSH
-==============
+wksh
+====
 
 Szyfrator WKSH - wtyczka do WordPressa
 
