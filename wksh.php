@@ -29,26 +29,43 @@ add_action('wp_enqueue_scripts','wksh_scripts');
 //-----------------------------------------------------------------------------------
 //SHORTCODES
 
+global $LIT;
+$LIT= array(
+    'GADERY POLUKI',
+    'POLITYKA RENU',
+    'KONIEC MATURY',
+    'KACEMINUTOWY',
+    'NOWE BUTY LISA',
+    'MOTYLE CUDAKI',
+    'GUBI KALESONY'
+    );
+
 function wksh_shortcode($atts, $content = null )
 {
+    global $LIT;
     extract( shortcode_atts( array(
 		'p' => 'Insekt1'
 	), $atts) );
-    return '<div class="szyfrator">
+    $str='<div class="szyfrator">
     <form>
     <script type="text/javascript">
         var ajaxUrl = "'.site_url().'/wp-admin/admin-ajax.php";
         var czekajIco = "'.site_url().'/wp-content/plugins/wksh/img/2m.gif";
     </script>
     <textarea id="tekst">'.$content.'</textarea>
-    <select id="szyfr">
-        <option value="gadery">GA-DE-RY PO-LU-KI</option>
-        <option value="polityka">PO-LI-TY-KA RE-NU</option>
-    </select>
+    <select id="szyfr">';
+    foreach($LIT as $l)
+    {
+        $la = strtolower(str_replace(" ","",$l));
+        $str.='<option value="'.$la.'">'.$l.'</option>';
+    }
+
+    $str.='</select>
     </form>
     <input type="button" id="szyfruj" value="Szyfruj!" />
     <div id="wynik"></div>
     </div>';
+    return $str;
 }
 
 add_shortcode('wksh', 'wksh_shortcode');
@@ -78,19 +95,19 @@ function ajax_szyfruj()
     $str = "";
 
     switch($metoda){
-        case "gadery":{
-            $str = gadery($t, $metoda);
-            break;
-        }
-
-        case "polityka":{
+        case "gaderypoluki":
+        case "politykarenu":
+        case "kaceminutowy":
+        case "koniecmatury":
+        case "nowebutylisa":
+        case "motylecudaki":
+        {
             $str = gadery($t, $metoda);
             break;
         }
     }
 
     echo strtoupper($str);
-
 
     exit();
 }
@@ -116,46 +133,27 @@ function przygotuj($t)
     return $t;
 }
 
+/*  Przygotowanie kluczy (tablic asocjacyjnych) na podstawie tekstu.
+    Tekst musi być w postaci ciągłej - bez znaków, zpacji, myślników...
+*/
+function gklucz($str)
+{
+    $str=strtolower($str);
+    $litery = str_split($str);
+    $k = array();
+    for($i=0;$i<count($litery);$i=$i+2)
+    {
+        $k[$litery[$i]] = $litery[$i+1];
+        $k[$litery[$i+1]] = $litery[$i];
+    }
+    return $k;
+}
 
+/*  Szyfrowanie na podstawie klucza
+*/
 function gadery($t, $met)
 {
-    switch($met){
-        case "gadery":{
-             $k = array(
-                "g" => "a",
-                "d" => "e",
-                "r" => "y",
-                "p" => "o",
-                "l" => "u",
-                "k" => "i",
-                "a" => "g",
-                "e" => "d",
-                "y" => "r",
-                "o" => "p",
-                "u" => "l",
-                "i" => "k"
-                );
-            break;
-        }
-
-        case "polityka":{
-             $k = array(
-                "p" => "o",
-                "l" => "i",
-                "t" => "y",
-                "k" => "a",
-                "r" => "e",
-                "n" => "u",
-                "o" => "p",
-                "i" => "l",
-                "y" => "t",
-                "a" => "k",
-                "e" => "r",
-                "u" => "n"
-                );
-            break;
-        }
-    }
+    $k = gklucz($met);
 
     if(isset($k))
     {
