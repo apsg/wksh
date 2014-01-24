@@ -79,7 +79,12 @@ function ajax_szyfruj()
 
     switch($metoda){
         case "gadery":{
-            $str = gadery($t);
+            $str = gadery($t, $metoda);
+            break;
+        }
+
+        case "polityka":{
+            $str = gadery($t, $metoda);
             break;
         }
     }
@@ -112,28 +117,55 @@ function przygotuj($t)
 }
 
 
-function gadery($t)
+function gadery($t, $met)
 {
-    $k = array(
-        "g" => "a",
-        "d" => "e",
-        "r" => "y",
-        "p" => "o",
-        "l" => "u",
-        "k" => "i",
-        "a" => "g",
-        "e" => "d",
-        "y" => "r",
-        "o" => "p",
-        "u" => "l",
-        "i" => "k"
-        );
-    $t = przygotuj($t);
-    $s = "";
-    for($i=0; $i < strlen($t); $i++)
+    switch($met){
+        case "gadery":{
+             $k = array(
+                "g" => "a",
+                "d" => "e",
+                "r" => "y",
+                "p" => "o",
+                "l" => "u",
+                "k" => "i",
+                "a" => "g",
+                "e" => "d",
+                "y" => "r",
+                "o" => "p",
+                "u" => "l",
+                "i" => "k"
+                );
+            break;
+        }
+
+        case "polityka":{
+             $k = array(
+                "p" => "o",
+                "l" => "i",
+                "t" => "y",
+                "k" => "a",
+                "r" => "e",
+                "n" => "u",
+                "o" => "p",
+                "i" => "l",
+                "y" => "t",
+                "a" => "k",
+                "e" => "r",
+                "u" => "n"
+                );
+            break;
+        }
+    }
+
+    if(isset($k))
     {
-        $l = $t[$i];
-        $s = $s.($k[$l] ? $k[$l] : $t[$i]);
+        $t = przygotuj($t);
+        $s = "";
+        for($i=0; $i < strlen($t); $i++)
+        {
+            $l = $t[$i];
+            $s = $s.($k[$l] ? $k[$l] : $t[$i]);
+        }
     }
     return $s;
 }
