@@ -9,6 +9,9 @@ jQuery(document).ready(function(){
                 t: tekst
             };
 
+        jQuery(".szyfrator #wynik").empty();
+        jQuery(".szyfrator #wynik").html("<img src='"+czekajIco+"' />");
+
         jQuery.post(ajaxUrl, dane, function(response){
             jQuery(".szyfrator #wynik").empty();
             jQuery(".szyfrator #wynik").html(response);
