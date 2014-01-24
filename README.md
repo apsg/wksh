@@ -1,0 +1,4 @@
+wksh
+====
+
+Szyfrator WKSH
