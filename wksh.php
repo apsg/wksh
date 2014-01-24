@@ -1,7 +1,7 @@
 <?php
  /*
  Plugin Name: Szyfrator WKSH
- Plugin URI: http://lesni.org
+ Plugin URI: https://github.com/apsg/wksh
  Description: Szyfrator, rozwinięcie dawnej Wielkiej Księgi Szyfrów Harcerskich
  Version: 0.1.0
  Author: phm. Szymon Gackowski
@@ -36,7 +36,10 @@ function wksh_shortcode($atts, $content = null )
 	), $atts) );
     return '<div class="szyfrator">
     <form>
-    <script type="text/javascript"> var ajaxUrl = "'.bloginfo('url').'/wp-admin/admin-ajax.php";</script>
+    <script type="text/javascript">
+        var ajaxUrl = "'.site_url().'/wp-admin/admin-ajax.php";
+        var czekajIco = "'.site_url().'/wp-content/plugins/wksh/img/2m.gif";
+    </script>
     <textarea id="tekst">'.$content.'</textarea>
     <select id="szyfr">
         <option value="gadery">GA-DE-RY PO-LU-KI</option>
