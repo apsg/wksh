@@ -47,6 +47,8 @@ function wksh_shortcode($atts, $content = null )
 		'p' => 'Insekt1'
 	), $atts) );
     $str='<div class="szyfrator">
+    <h5>Szyfrator WKSH</h5>
+    Wpisz poniżej swój tekst, wybierz szyfr i naciśnij Szyfruj! Po chwili otrzymasz swój zaszyfrowany tekst.
     <form>
     <script type="text/javascript">
         var ajaxUrl = "'.site_url().'/wp-admin/admin-ajax.php";
