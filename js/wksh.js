@@ -14,7 +14,7 @@ jQuery(document).ready(function(){
 
         jQuery.post(ajaxUrl, dane, function(response){
             jQuery(".szyfrator #wynik").empty();
-            jQuery(".szyfrator #wynik").html(response);
+            jQuery(".szyfrator #wynik").html(response + "<br /><a href='"+ajaxUrl+"?action=szyfruj&metoda="+met+"&t="+tekst+"' target='_blank'>Link do tego wyniku</a>");
         });
 
     });
