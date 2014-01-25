@@ -5,3 +5,45 @@
     font-weight:700;
     margin-top:10px;
 }
+
+/* Czekoladka
+--------------
+*/
+
+.czeko
+{
+    display:inline-block;
+    height:51px;
+    width:80px;
+    background-image:url(img/czekosprite.png);
+    background-repeat:no-repeat;
+    margin:3px;
+}
+.czeko-spacja { width:51px; background-position:-600px -100px; }
+.czeko-a{ background-position:0px -1px; }
+.czeko-b{ background-position:-241px -1px; }
+.czeko-c{ width:81px; background-position:-79px 0px; }
+.czeko-d{ width:81px; background-position:-320px 0px; }
+.czeko-e{ background-position:-159px -1px; }
+.czeko-f{ background-position:-400px -1px; }
+
+.czeko-g{ background-position:0px -50px; }
+.czeko-h{ background-position:-241px -50px; }
+.czeko-i{ width:81px; background-position:-79px -50px; }
+.czeko-j{ width:81px; background-position:-320px -50px; }
+.czeko-k{ background-position:-159px -50px; }
+.czeko-l{ background-position:-400px -50px; }
+
+.czeko-m{ background-position:0px -100px; }
+.czeko-n{ background-position:-241px -100px; }
+.czeko-o{ width:81px; background-position:-79px -100px; }
+.czeko-p{ width:81px; background-position:-320px -100px; }
+.czeko-r{ background-position:-159px -100px; }
+.czeko-s{ background-position:-400px -100px; }
+
+.czeko-t{ width:51px; background-position:-520px -50px; }
+.czeko-u{ width:51px; background-position:-545px 0px; }
+.czeko-w{ width:51px; background-position:-520px -100px; }
+.czeko-y{ width:51px; background-position:-494px 0px; }
+
+.czeko-z{ width:51px; background-position:-629px 0px; }

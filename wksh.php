@@ -37,7 +37,8 @@ $LIT= array(
     'KACEMINUTOWY',
     'NOWE BUTY LISA',
     'MOTYLE CUDAKI',
-    'GUBI KALESONY'
+    'GUBI KALESONY',
+    'KALINOWE BUTY'
     );
 
 function wksh_shortcode($atts, $content = null )
@@ -62,7 +63,8 @@ function wksh_shortcode($atts, $content = null )
         $str.='<option value="'.$la.'">'.$l.'</option>';
     }
 
-    $str.='</select>
+    $str.='<option value="czekoladka">Czekoladka</option>
+    </select>
     </form>
     <input type="button" id="szyfruj" value="Szyfruj!" />
     <div id="wynik"></div>
@@ -103,13 +105,19 @@ function ajax_szyfruj()
         case "koniecmatury":
         case "nowebutylisa":
         case "motylecudaki":
+        case "kalinowebuty":
         {
-            $str = gadery($t, $metoda);
+            $str = strtoupper(gadery($t, $metoda));
+            break;
+        }
+        case "czekoladka":
+        {
+            $str = czekoladka($t);
             break;
         }
     }
 
-    echo strtoupper($str);
+    echo $str;
 
     exit();
 }
@@ -170,5 +178,23 @@ function gadery($t, $met)
     return $s;
 }
 
+function czekoladka($t)
+{
+    $t = str_split(przygotuj($t));
+    $s = "";
+    $litery = str_split("abcdefghijklmnoprstuwyz");
+    foreach($t as $tel)
+    {
+        if(in_array($tel, $litery))
+        {
+            $s .= '<div class="czeko czekolitera czeko-'.$tel.'">&nbsp;</div>';
+        }
+        elseif($tel == " ")
+        {
+            $s .= '<div class="czeko czekolitera czeko-spacja">&nbsp;</div>';
+        }
+    }
+    return $s;
+}
 
 ?>
